@@ -6,6 +6,7 @@ python:
 build:
   pre_ci:
     # Always pull the latest base image to avoid any cached images on the host
+    - docker rmi `docker images | grep drydock | awk '{print $3}'`
     - docker pull ubuntu:12.04
     - docker build --rm -t drydock/u12:tip .
 
